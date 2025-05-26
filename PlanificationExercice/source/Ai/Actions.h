@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <vector>
 
-#include "world_state.h"
+#include "WorldState.h"
 
 enum struct Actions : std::uint32_t
 { 
@@ -35,6 +35,8 @@ CreateActions(PickUpWeapon, 1);
 CreateActions(MoveToEnemy, 2);
 CreateActions(KillEnemy, 4);
 CreateActions(HealSelf, 2);
+
+
 
 
 inline WordlState ApplieActionToWorld(Actions _action, const WordlState& _wordlState)
@@ -88,41 +90,14 @@ inline bool IsActionAvailable(Actions _action, const WordlState& _worldState )
 
 inline std::vector<ActionsAndCost> CreateActionSubSet(const std::vector<ActionsAndCost>& _availableAction, Actions _action)
 {
-    switch (_action)
-    {
-    case Actions::MoveToWeapon:
-        return
-        {
-            PickUpWeapon,
-        };
-        break;
-    case Actions::PickUpWeapon:
-        return
-        {
-            MoveToEnemy,
-        };
-    case Actions::MoveToEnemy:
-        return
-         {
-             KillEnemy,
-         };
-    case Actions::KillEnemy:
-        return
-        {
-            HealSelf,
-        };
-        break;
-    case Actions::HealSelf:
-        return
-        {
-            MoveToWeapon,
-        };
-        break;
-    case Actions::Count:
-    case Actions::None:
-        break;
-    default: ;
-    }
+    std::vector<ActionsAndCost> actions = _availableAction;
 
-    return {};
+   const auto it = std::ranges::find_if(actions, [&_action](const ActionsAndCost& actionAndCost)
+   {
+       return actionAndCost.action == _action;
+   });
+
+    actions.erase(it);
+
+    return actions;
 }
