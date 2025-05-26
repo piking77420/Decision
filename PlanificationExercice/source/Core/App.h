@@ -1,7 +1,13 @@
 ﻿#pragma once
 #include <array>
 
-#include "Entity.h"
+#include "Level.h"
+#include "System/ControllerSystem.h"
+
+const int SCREEN_WIDTH = 1280;
+const int SCREEN_HEIGHT = 1024;
+const int offsetX = SCREEN_WIDTH / 2;
+const int offsetY = SCREEN_HEIGHT / 2;
 
 class App
 {
@@ -10,5 +16,11 @@ public:
     
 private:
 
-    std::array<Entity, 4> entities;
+    Level level;
+
+    ControllerSystem controllerSystem;
+   
+    void DrawEntitySystem();
+
+    void ControllerSystem();
 };
