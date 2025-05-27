@@ -1,5 +1,8 @@
 ﻿#pragma once
+
 #include <array>
+#include <memory>
+#include <vector>
 
 #include "Level.h"
 #include "System/ControllerSystem.h"
@@ -13,14 +16,13 @@ class App
 {
 public:
     App();
-    
+
 private:
 
     Level level;
+    
+    std::vector<std::unique_ptr<System>> m_System;
 
-    ControllerSystem controllerSystem;
-   
-    void DrawEntitySystem();
-
-    void ControllerSystem();
+    static void InitVillager(LevelData& levelData);
+    
 };

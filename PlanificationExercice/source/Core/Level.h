@@ -1,12 +1,17 @@
 #pragma once
 #include <array>
-#include "Controller.h"
-#include "Entity.h"
+#include <vector>
+
+#include "Component/ComponentHeader.h"
+
+constexpr size_t MAX_ENTITIES = 1000;
 
 struct LevelData
 {
-	std::array<Entity, 4> entities;
-	std::array<Controller, 4> controller;
+	std::vector<Transfrom> transforms;
+	std::vector<Controller> controllers;
+	std::vector<Actor> actors;
+	size_t entityCount;
 };
 
 class Level
@@ -19,5 +24,7 @@ public:
 	Level();
 
 	~Level() = default;
+
+private:
 };
 

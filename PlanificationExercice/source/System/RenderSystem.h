@@ -11,6 +11,6 @@ public:
 
 	void Update(LevelData& level) override;
 
-	void Renderer(const LevelData& level) override;
+	void Render(const LevelData& level) override;
 };
 

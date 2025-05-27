@@ -34,6 +34,8 @@ public:
     {
         
     }
+    
+    Planer() = default; 
 
     void InitGopContext(PlanerContext* goapContext);
     

@@ -10,25 +10,27 @@ void RenderSystem::Update(LevelData& level)
 {
 }
 
-void RenderSystem::Renderer(const LevelData& level)
+void RenderSystem::Render(const LevelData& level)
 {
 	
-	
-		
-
-	for (auto& entity : level.entities)
+	for (int i = 0; i < level.entityCount; i++)
 	{
-		switch (entity.entityType)
+		const Actor* npc = &level.actors[i];
+		Vector2 pos = level.transforms[i].position;
+		
+		switch (npc->actorType)
 		{
-		case EntityType::Villager : 
-			DrawCircle(static_cast<int>(entity.position.x) + offsetX,
-				static_cast<int>(entity.position.y) + offsetY,
+		case ActorType::Villager : 
+			DrawCircle(static_cast<int>(pos.x) + offsetX,
+				static_cast<int>(pos.y) + offsetY,
 				10, GREEN);
+			break;
+		case ActorType::Soldier:
 			break;
 		default:
 			break;
 		}
 	}
-
-
 }
+
+
