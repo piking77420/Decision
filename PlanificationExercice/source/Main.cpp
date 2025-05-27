@@ -108,11 +108,6 @@ void TestGoap()
 
 int main(int argc, char* argv[])
 {
-
-#if 1
-    App app;
-#else
     TestGoap();
-#endif
     return 0;
 }
